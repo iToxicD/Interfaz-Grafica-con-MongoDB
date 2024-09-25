@@ -1,6 +1,5 @@
 package mongo.ia;
 
-
 import java.awt.EventQueue;
 
 

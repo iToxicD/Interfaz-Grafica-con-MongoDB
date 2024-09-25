@@ -57,22 +57,20 @@ public class VentanaConexion extends JFrame {
                 String nombreBaseDatos = txtBaseDatos.getText();
                 String coleccion = txtColeccion.getText();
                 
-                new conexionBBDD(url, nombreBaseDatos, coleccion);
+                
                 //Document sampleDoc = new Document("_id", "3").append("name", "Juan");
 			     //col.insertOne(sampleDoc);
-                dispose();
+                MongoClient client = MongoClients.create(url);
+        	    MongoDatabase db = client.getDatabase(nombreBaseDatos);
+        	    MongoCollection col = db.getCollection(coleccion);
+        	    
+        	    new opciones();
+                
         	}
         });
         botonConectar.setBounds(213, 220, 117, 30);
         getContentPane().add(botonConectar);
 
         setVisible(true);
-    }
-    
-    public static void conexionBBDD(String url, String nombreBaseDatos, String coleccion) {
-    	
-    	MongoClient client = MongoClients.create(url);
-	    MongoDatabase db = client.getDatabase(nombreBaseDatos);
-	    MongoCollection col = db.getCollection(coleccion);
     }
 }
