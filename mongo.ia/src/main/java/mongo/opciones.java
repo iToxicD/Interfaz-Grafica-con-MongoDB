@@ -8,13 +8,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
+import javax.swing.*;
+import javax.swing.JTable;
 
 public class opciones extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -70,8 +71,8 @@ public class opciones extends JFrame {
 		btnNewButton_4.setBounds(577, 76, 132, 23);
 		contentPane.add(btnNewButton_4);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 211, 699, 226);
-		contentPane.add(textArea);
+		table = new JTable();
+		table.setBounds(10, 239, 699, 198);
+		contentPane.add(table);
 	}
 }

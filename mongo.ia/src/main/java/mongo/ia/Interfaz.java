@@ -60,6 +60,11 @@ public class Interfaz {
 		frmBaseDeDatos.getContentPane().setLayout(null);
 		
 		JButton botonSalir = new JButton("Salir");
+		botonSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmBaseDeDatos.setVisible(false);
+			}
+		});
 		botonSalir.setBackground(new Color(255, 255, 255));
 		botonSalir.setFont(new Font("Yu Gothic UI", Font.PLAIN, 17));
 		botonSalir.setBounds(416, 373, 116, 37);
