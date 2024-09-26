@@ -23,6 +23,9 @@ public class opciones extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 
+	
+	consultasDB consultas= new consultasDB();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -61,14 +64,13 @@ public class opciones extends JFrame {
 		botonCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-                String codigo = JOptionPane.showInputDialog("Ingrese el código de la IA:");
-                String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la IA:");
-                String tipo = JOptionPane.showInputDialog("Ingrese el tipo de IA:");
-                int añoAparicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año de aparición:"));
-                String imagen = JOptionPane.showInputDialog("Ingrese la ruta de la imagen:");
+                String codigo = JOptionPane.showInputDialog("Código de la IA:");
+                String nombre = JOptionPane.showInputDialog("Introduzca el nuevo nombre:");
+                String tipo = JOptionPane.showInputDialog("Introduzca el nuevo tipo de IA:");
+                int aparicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año:"));
+                String imagen = JOptionPane.showInputDialog("Ingrese la nueva ruta de la imagen:");
                 
-				//consultasDB consulta = new consultasDB();
-				//consulta.insertar(ALLBITS, getTitle(), getWarningString(), ABORT, getName());
+				consultas.insertar(codigo, nombre, tipo, aparicion, imagen);
 			}
 		});
 		botonCrear.setBackground(new Color(255, 255, 255));
@@ -76,6 +78,18 @@ public class opciones extends JFrame {
 		contentPane.add(botonCrear);
 		
 		JButton botonActualizar = new JButton("Actualizar");
+		botonActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String codigo = JOptionPane.showInputDialog("Ingrese el código de la IA:");
+                String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la IA:");
+                String tipo = JOptionPane.showInputDialog("Ingrese el tipo de IA:");
+                int aparicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año de aparición:"));
+                String imagen = JOptionPane.showInputDialog("Ingrese la ruta de la imagen:");
+                
+				consultas.actualizar(codigo, nombre, tipo, aparicion, imagen);
+			}
+		});
 		botonActualizar.setBackground(new Color(255, 255, 255));
 		botonActualizar.setBounds(207, 11, 112, 39);
 		contentPane.add(botonActualizar);
@@ -101,7 +115,11 @@ public class opciones extends JFrame {
 		contentPane.add(botonSalir);
 		
 		table = new JTable();
-		table.setBounds(90, 239, 619, 198);
+		table.setBounds(90, 239, 427, 198);
 		contentPane.add(table);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(536, 239, 173, 198);
+		contentPane.add(lblNewLabel);
 	}
 }

@@ -62,7 +62,8 @@ public class VentanaConexion extends JFrame {
                         MongoClient client = MongoClients.create(url);
                         MongoDatabase db = client.getDatabase(nombreBaseDatos);
                         MongoCollection col = db.getCollection(coleccion);
-
+                        
+                        consultasDB.consultasDB(url, nombreBaseDatos, coleccion);
                         JOptionPane.showMessageDialog(null, "Conectado correctamente.");
                         dispose();  
                         new opciones().setVisible(true);  
