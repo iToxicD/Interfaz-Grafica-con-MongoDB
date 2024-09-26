@@ -16,7 +16,7 @@ public class VentanaConexion extends JFrame {
     }
     
     public VentanaConexion() {
-    	getContentPane().setBackground(new Color(255, 255, 255));
+    	getContentPane().setBackground(new Color(240, 240, 240));
         
         setTitle("Conexión a MongoDB");
         setSize(400, 300);  
@@ -57,18 +57,21 @@ public class VentanaConexion extends JFrame {
                 String nombreBaseDatos = txtBaseDatos.getText();
                 String coleccion = txtColeccion.getText();
                 
-                
-                //Document sampleDoc = new Document("_id", "3").append("name", "Juan");
-			     //col.insertOne(sampleDoc);
-                MongoClient client = MongoClients.create(url);
-        	    MongoDatabase db = client.getDatabase(nombreBaseDatos);
-        	    MongoCollection col = db.getCollection(coleccion);
+                if (!url.isEmpty() && !nombreBaseDatos.isEmpty() && !coleccion.isEmpty()) {
+                    try {
+                        MongoClient client = MongoClients.create(url);
+                        MongoDatabase db = client.getDatabase(nombreBaseDatos);
+                        MongoCollection col = db.getCollection(coleccion);
+
+                        JOptionPane.showMessageDialog(null, "Conectado correctamente.");
+                        dispose();  
+                        new opciones().setVisible(true);  
+                        
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Error al conectar: " + ex);
+                    }
         	    
-        	    if (!url.isEmpty() && !nombreBaseDatos.isEmpty() && !coleccion.isEmpty()) {
-        	    	new opciones();
-				}
-        	    
-                
+                }
         	}
         });
         botonConectar.setBounds(213, 220, 117, 30);
