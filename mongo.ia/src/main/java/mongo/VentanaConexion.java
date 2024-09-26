@@ -64,7 +64,10 @@ public class VentanaConexion extends JFrame {
         	    MongoDatabase db = client.getDatabase(nombreBaseDatos);
         	    MongoCollection col = db.getCollection(coleccion);
         	    
-        	    new opciones();
+        	    if (!url.isEmpty() && !nombreBaseDatos.isEmpty() && !coleccion.isEmpty()) {
+        	    	new opciones();
+				}
+        	    
                 
         	}
         });

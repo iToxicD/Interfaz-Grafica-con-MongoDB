@@ -1,15 +1,21 @@
 package mongo;
 
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.mongodb.client.MongoClient;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.*;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class opciones extends JFrame {
 
@@ -48,31 +54,37 @@ public class opciones extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(128, 128, 255));
-		panel.setBounds(0, 0, 719, 65);
+		panel.setBounds(0, 0, 156, 448);
 		contentPane.add(panel);
 		
-		JButton btnNewButton = new JButton("Crear ");
-		btnNewButton.setBounds(10, 76, 89, 23);
-		contentPane.add(btnNewButton);
+		JButton botonCrear = new JButton("Crear");
+		botonCrear.setBounds(166, 11, 89, 39);
+		contentPane.add(botonCrear);
 		
-		JButton btnNewButton_1 = new JButton("Actualizar");
-		btnNewButton_1.setBounds(109, 76, 89, 23);
-		contentPane.add(btnNewButton_1);
+		JButton botonActualizar = new JButton("Actualizar");
+		botonActualizar.setBounds(265, 11, 89, 39);
+		contentPane.add(botonActualizar);
 		
-		JButton btnNewButton_2 = new JButton("Eliminar");
-		btnNewButton_2.setBounds(208, 76, 89, 23);
-		contentPane.add(btnNewButton_2);
+		JButton botonEliminar = new JButton("Eliminar");
+		botonEliminar.setBounds(364, 11, 89, 39);
+		contentPane.add(botonEliminar);
 		
-		JButton btnNewButton_3 = new JButton("Consultar");
-		btnNewButton_3.setBounds(307, 76, 89, 23);
-		contentPane.add(btnNewButton_3);
+		JButton botonConsultar = new JButton("Consultar");
+		botonConsultar.setBounds(463, 11, 89, 39);
+		contentPane.add(botonConsultar);
 		
-		JButton btnNewButton_4 = new JButton("Salir del programa");
-		btnNewButton_4.setBounds(577, 76, 132, 23);
-		contentPane.add(btnNewButton_4);
+		JButton botonSalir = new JButton("Salir del programa");
+		botonSalir.setBackground(new Color(255, 255, 255));
+		botonSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		botonSalir.setBounds(577, 11, 132, 39);
+		contentPane.add(botonSalir);
 		
 		table = new JTable();
-		table.setBounds(10, 239, 699, 198);
+		table.setBounds(166, 239, 543, 198);
 		contentPane.add(table);
 	}
 }
