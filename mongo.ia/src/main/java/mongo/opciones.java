@@ -95,11 +95,23 @@ public class opciones extends JFrame {
 		contentPane.add(botonActualizar);
 		
 		JButton botonEliminar = new JButton("Eliminar");
+		botonEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String codigo = JOptionPane.showInputDialog("Código de la IA a eliminar:");
+				consultas.eliminar(codigo);
+			}
+		});
 		botonEliminar.setBackground(new Color(255, 255, 255));
 		botonEliminar.setBounds(329, 11, 89, 39);
 		contentPane.add(botonEliminar);
 		
 		JButton botonConsultar = new JButton("Consultar");
+		botonConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String codigo = JOptionPane.showInputDialog("Ingrese el código de la IA:");
+				consultas.consultar(codigo);
+			}
+		});
 		botonConsultar.setBackground(new Color(255, 255, 255));
 		botonConsultar.setBounds(428, 11, 89, 39);
 		contentPane.add(botonConsultar);
