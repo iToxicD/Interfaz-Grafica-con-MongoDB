@@ -57,11 +57,11 @@ public class consultasDB {
     }
     
     //Consulta en la base de datos los datos que coincidan con el codigo
-    public void consultar(String codigo) {
-    	Bson filtro = Filters.eq("_id", codigo);
+    public Document consultar(String tipo) {
+    	Bson filtro = Filters.eq("tipo", tipo);
     	Document resultado = coleccion.find(filtro).first();
-    	
-    	
+    	return resultado;
+   
     }
     
     public void eliminar(String codigo) {

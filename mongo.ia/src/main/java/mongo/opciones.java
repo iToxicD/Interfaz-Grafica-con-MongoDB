@@ -6,6 +6,9 @@ import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import org.bson.Document;
 
 import com.mongodb.client.MongoClient;
 
@@ -25,6 +28,7 @@ public class opciones extends JFrame {
 
 	
 	consultasDB consultas= new consultasDB();
+	DefaultTableModel tabla;
 	
 	/**
 	 * Launch the application.
@@ -108,8 +112,23 @@ public class opciones extends JFrame {
 		JButton botonConsultar = new JButton("Consultar");
 		botonConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String codigo = JOptionPane.showInputDialog("Ingrese el código de la IA:");
-				consultas.consultar(codigo);
+				// Vacia la tabla previamente
+				tabla.setRowCount(0);
+				String tipo = JOptionPane.showInputDialog("Ingrese el tipo de IA:");
+				Document resultado = consultas.consultar(tipo);
+				// Coge los datos del documento y los pone en la tabla
+				if (resultado != null) {
+					String codigo = resultado.getString("_id");
+			        String nombre = resultado.getString("nombre");
+			        tipo = resultado.getString("tipo");
+			        int aparicion = resultado.getInteger("añoAparicion");
+			        String imagen = resultado.getString("imagen");
+			        // Añade los datos en la tabla
+			        tabla.addRow(new Object[]{codigo, nombre, tipo, aparicion, imagen});
+				}else {
+					JOptionPane.showMessageDialog(null, "No se han encontrado datos.", tipo, JOptionPane.WARNING_MESSAGE);
+				}
+				
 			}
 		});
 		botonConsultar.setBackground(new Color(255, 255, 255));
@@ -126,12 +145,11 @@ public class opciones extends JFrame {
 		botonSalir.setBounds(562, 11, 147, 39);
 		contentPane.add(botonSalir);
 		
-		table = new JTable();
-		table.setBounds(90, 239, 427, 198);
-		contentPane.add(table);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(536, 239, 173, 198);
-		contentPane.add(lblNewLabel);
+		tabla = new DefaultTableModel(new String[]{"Código", "Nombre", "Tipo", "Año Aparición", "Imagen"}, 0);
+	    table = new JTable(tabla);
+	    table.setBackground(new Color(255, 255, 255));
+	    JScrollPane scrollPane = new JScrollPane(table);
+	    scrollPane.setBounds(90, 206, 620, 231);
+	    contentPane.add(scrollPane);
 	}
 }

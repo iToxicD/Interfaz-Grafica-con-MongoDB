@@ -25,28 +25,28 @@ public class VentanaConexion extends JFrame {
         getContentPane().setLayout(null);  
     
         JLabel mensajeURL = new JLabel("URL:");
-        mensajeURL.setBounds(30, 30, 100, 30);
+        mensajeURL.setBounds(124, 30, 49, 30);
         getContentPane().add(mensajeURL);
         
         JTextField txtURL = new JTextField();
-        txtURL.setBounds(130, 30, 200, 30);
+        txtURL.setBounds(174, 30, 200, 30);
         getContentPane().add(txtURL);
         
         JLabel mensajeBaseDatos = new JLabel("Base de Datos:");
         mensajeBaseDatos.setHorizontalAlignment(SwingConstants.LEFT);
-        mensajeBaseDatos.setBounds(30, 80, 100, 30);
+        mensajeBaseDatos.setBounds(85, 80, 88, 30);
         getContentPane().add(mensajeBaseDatos);
         
         JTextField txtBaseDatos = new JTextField();
-        txtBaseDatos.setBounds(130, 80, 200, 30);
+        txtBaseDatos.setBounds(174, 80, 200, 30);
         getContentPane().add(txtBaseDatos);
         
         JLabel mensajeColeccion = new JLabel("Colección:");
-        mensajeColeccion.setBounds(30, 130, 100, 30);
+        mensajeColeccion.setBounds(107, 130, 69, 30);
         getContentPane().add(mensajeColeccion);
         
         JTextField txtColeccion = new JTextField();
-        txtColeccion.setBounds(130, 130, 200, 30);
+        txtColeccion.setBounds(174, 130, 200, 30);
         getContentPane().add(txtColeccion);
 
         JButton botonConectar = new JButton("Conectar");
@@ -65,6 +65,7 @@ public class VentanaConexion extends JFrame {
                         
                         consultasDB.consultasDB(url, nombreBaseDatos, coleccion);
                         JOptionPane.showMessageDialog(null, "Conectado correctamente.");
+                        System.out.println("Conectado.");
                         dispose();  
                         new opciones().setVisible(true);  
                         
@@ -77,6 +78,11 @@ public class VentanaConexion extends JFrame {
         });
         botonConectar.setBounds(213, 220, 117, 30);
         getContentPane().add(botonConectar);
+        
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(128, 128, 255));
+        panel.setBounds(0, 0, 69, 261);
+        getContentPane().add(panel);
 
         setVisible(true);
     }
