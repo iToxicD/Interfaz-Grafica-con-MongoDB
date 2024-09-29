@@ -19,6 +19,7 @@ import org.bson.Document;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Interfaz {
 
@@ -74,6 +75,13 @@ public class Interfaz {
 		panel.setBackground(new Color(128, 128, 255));
 		panel.setBounds(0, 0, 165, 419);
 		frmBaseDeDatos.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel imagen = new JLabel("");
+		imagen.setIcon(new ImageIcon("C:\\Users\\vader\\Desktop\\Interfaz-Grafica-con-MongoDB\\mongo.ia\\src\\imagen\\database-security.png"));
+		imagen.setBounds(10, 0, 155, 419);
+		imagen.setSize(100, 100);
+		panel.add(imagen);
 		
 		JButton botonEntrar = new JButton("Entrar");
 		botonEntrar.addActionListener(new ActionListener() {

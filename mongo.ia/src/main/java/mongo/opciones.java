@@ -149,7 +149,15 @@ public class opciones extends JFrame {
 	    table = new JTable(tabla);
 	    table.setBackground(new Color(255, 255, 255));
 	    JScrollPane scrollPane = new JScrollPane(table);
-	    scrollPane.setBounds(90, 206, 620, 231);
+	    scrollPane.setBounds(90, 206, 417, 231);
 	    contentPane.add(scrollPane);
+	    
+	    JLabel imagenes = new JLabel("New label");
+	    imagenes.setBounds(517, 206, 192, 231);
+	    contentPane.add(imagenes);
+	    
+	    JLabel lblNewLabel_1 = new JLabel("Tabla donde se muestran los datos.");
+	    lblNewLabel_1.setBounds(90, 181, 229, 14);
+	    contentPane.add(lblNewLabel_1);
 	}
 }
