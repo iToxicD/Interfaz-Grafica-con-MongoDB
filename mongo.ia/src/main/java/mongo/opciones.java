@@ -65,6 +65,7 @@ public class opciones extends JFrame {
 		contentPane.add(panel);
 		
 		JButton botonCrear = new JButton("Crear");
+		botonCrear.setSelectedIcon(null);
 		botonCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
