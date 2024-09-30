@@ -75,8 +75,8 @@ public class opciones extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
                 String codigo = JOptionPane.showInputDialog("Código de la IA:");
-                String nombre = JOptionPane.showInputDialog("Introduzca el nuevo nombre:");
-                String tipo = JOptionPane.showInputDialog("Introduzca el nuevo tipo de IA:");
+                String nombre = JOptionPane.showInputDialog("Introduzca el nombre:");
+                String tipo = JOptionPane.showInputDialog("Introduzca el  tipo de IA:");
                 int aparicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año:"));
                 String imagen = JOptionPane.showInputDialog("Ingrese la nueva ruta de la imagen:");
                 
@@ -109,6 +109,7 @@ public class opciones extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String codigo = JOptionPane.showInputDialog("Código de la IA a eliminar:");
 				consultas.eliminar(codigo);
+				JOptionPane.showMessageDialog(null, "¡IA eliminada con existo!");
 			}
 		});
 		botonEliminar.setBackground(new Color(255, 255, 255));
@@ -148,7 +149,7 @@ public class opciones extends JFrame {
 		                imagenes.revalidate();
 		                imagenes.repaint();
 					} catch (Exception ex) {
-						// TODO: handle exception
+						System.out.print("Error en la imagen: " + ex);
 					}
 				}else {
 					JOptionPane.showMessageDialog(null, "No se han encontrado datos.", tipo, JOptionPane.WARNING_MESSAGE);
