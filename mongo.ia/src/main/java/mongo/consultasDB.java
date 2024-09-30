@@ -67,7 +67,5 @@ public class consultasDB {
     public void eliminar(String codigo) {
     	Bson filtro = Filters.eq("_id", codigo);
     	DeleteResult elimina = coleccion.deleteOne(filtro);
-    }
-
-	
+    }	
 }

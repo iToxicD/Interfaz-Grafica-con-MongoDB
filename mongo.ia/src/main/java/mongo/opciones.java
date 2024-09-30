@@ -2,6 +2,7 @@ package mongo;
 
 import java.awt.EventQueue;
 import java.awt.Frame;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,9 +16,13 @@ import com.mongodb.client.MongoClient;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.imageio.ImageIO;
+import javax.print.DocFlavor.URL;
 import javax.swing.*;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class opciones extends JFrame {
@@ -110,6 +115,10 @@ public class opciones extends JFrame {
 		botonEliminar.setBounds(329, 11, 89, 39);
 		contentPane.add(botonEliminar);
 		
+		JLabel imagenes = new JLabel("");
+	    imagenes.setBounds(517, 206, 192, 231);
+	    contentPane.add(imagenes);
+	    
 		JButton botonConsultar = new JButton("Consultar");
 		botonConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,6 +135,21 @@ public class opciones extends JFrame {
 			        String imagen = resultado.getString("imagen");
 			        // Añade los datos en la tabla
 			        tabla.addRow(new Object[]{codigo, nombre, tipo, aparicion, imagen});
+			     
+			        try {
+			        	File url = new File(imagen);
+		                BufferedImage bufi = ImageIO.read(url);
+		                ImageIcon icon = new ImageIcon(bufi);
+		                if(bufi == null) {
+		                	System.out.print("No se pudo leer la imagen: "+ imagen);
+		                }
+		                Image foto = icon.getImage().getScaledInstance(imagenes.getWidth(), imagenes.getHeight(), Image.SCALE_SMOOTH);
+		                imagenes.setIcon(new ImageIcon(foto));
+		                imagenes.revalidate();
+		                imagenes.repaint();
+					} catch (Exception ex) {
+						// TODO: handle exception
+					}
 				}else {
 					JOptionPane.showMessageDialog(null, "No se han encontrado datos.", tipo, JOptionPane.WARNING_MESSAGE);
 				}
@@ -153,12 +177,8 @@ public class opciones extends JFrame {
 	    scrollPane.setBounds(90, 206, 417, 231);
 	    contentPane.add(scrollPane);
 	    
-	    JLabel imagenes = new JLabel("New label");
-	    imagenes.setBounds(517, 206, 192, 231);
-	    contentPane.add(imagenes);
-	    
-	    JLabel lblNewLabel_1 = new JLabel("Tabla donde se muestran los datos.");
-	    lblNewLabel_1.setBounds(90, 181, 229, 14);
-	    contentPane.add(lblNewLabel_1);
+	    JLabel info = new JLabel("Tabla donde se muestran los datos.");
+	    info.setBounds(90, 181, 229, 14);
+	    contentPane.add(info);
 	}
 }

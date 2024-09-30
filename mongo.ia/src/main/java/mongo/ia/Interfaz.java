@@ -80,7 +80,7 @@ public class Interfaz {
 		JLabel imagen = new JLabel("");
 		imagen.setIcon(new ImageIcon("C:\\Users\\vader\\Desktop\\Interfaz-Grafica-con-MongoDB\\mongo.ia\\src\\imagen\\database-security.png"));
 		imagen.setBounds(0, 0, 165, 419);
-		imagen.getSize(100, 100);
+		//imagen.getSize(100, 100);
 		panel.add(imagen);
 		
 		JButton botonEntrar = new JButton("Entrar");
