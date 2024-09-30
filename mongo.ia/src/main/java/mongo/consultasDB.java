@@ -14,13 +14,16 @@ import com.mongodb.client.result.UpdateResult;
 import org.bson.conversions.Bson;
 
 public class consultasDB {
-
+	
+	// Coleccion para realizar las consultas CRUD 
 	private static MongoCollection<Document> coleccion;
 
+	// Constructor que recibe la coleccion
 	public consultasDB(MongoCollection<Document> coleccion) {
         this.coleccion = coleccion;
     }
 	
+	// Contructor para inicializar la conexion con la base de datos y coleccion
 	public consultasDB(String url, String nombreBaseDatos, String nombreColeccion) {
         MongoClient client = MongoClients.create(url);
         MongoDatabase db = client.getDatabase(nombreBaseDatos);
@@ -37,7 +40,7 @@ public class consultasDB {
 		super();
 	}
 
-
+	
 	// Añade una IA nueva a la base de datos
     public void insertar(String codigo, String nombre, String tipo, int aparicion, String imagen) {
         Document crear = new Document("_id", codigo).append("nombre", nombre).append("tipo", tipo).append("añoAparicion", aparicion).append("imagen", imagen);
@@ -47,6 +50,7 @@ public class consultasDB {
         System.out.println("Insertado " + result.getInsertedId());
     }
     
+    // Actualiza los datos de la base de datos basandonos en el codigo
     public void actualizar(String codigo, String nuevoNombre, String nuevoTipo, int nuevaAparicion, String nuevaImagen) {
     	Bson filtro = Filters.eq("_id", codigo);
     	Bson nuevo = new Document("$set", new Document("nombre", nuevoNombre).append("tipo", nuevoTipo) .append("añoAparicion", nuevaAparicion).append("imagen", nuevaImagen));
@@ -64,6 +68,7 @@ public class consultasDB {
    
     }
     
+    // Elimina la IA a partir del codigo
     public void eliminar(String codigo) {
     	Bson filtro = Filters.eq("_id", codigo);
     	DeleteResult elimina = coleccion.deleteOne(filtro);

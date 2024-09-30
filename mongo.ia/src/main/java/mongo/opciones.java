@@ -31,13 +31,10 @@ public class opciones extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 
-	
+
 	consultasDB consultas= new consultasDB();
 	DefaultTableModel tabla;
 	
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -73,13 +70,13 @@ public class opciones extends JFrame {
 		botonCrear.setSelectedIcon(null);
 		botonCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				// Introducimos por teclado los diferentes apartados
                 String codigo = JOptionPane.showInputDialog("Código de la IA:");
                 String nombre = JOptionPane.showInputDialog("Introduzca el nombre:");
                 String tipo = JOptionPane.showInputDialog("Introduzca el  tipo de IA:");
                 int aparicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año:"));
                 String imagen = JOptionPane.showInputDialog("Ingrese la nueva ruta de la imagen:");
-                
+                // Añadimos a la base de datos los datos
 				consultas.insertar(codigo, nombre, tipo, aparicion, imagen);
 			}
 		});
@@ -90,13 +87,13 @@ public class opciones extends JFrame {
 		JButton botonActualizar = new JButton("Actualizar");
 		botonActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				// Introducimos los nuevos datos para actualizar
 				String codigo = JOptionPane.showInputDialog("Ingrese el código de la IA:");
                 String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la IA:");
                 String tipo = JOptionPane.showInputDialog("Ingrese el tipo de IA:");
                 int aparicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año de aparición:"));
                 String imagen = JOptionPane.showInputDialog("Ingrese la ruta de la imagen:");
-                
+                // Actualizamos los datos
 				consultas.actualizar(codigo, nombre, tipo, aparicion, imagen);
 			}
 		});
@@ -107,6 +104,7 @@ public class opciones extends JFrame {
 		JButton botonEliminar = new JButton("Eliminar");
 		botonEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Eliminamos la IA a partir del codigo de la misma
 				String codigo = JOptionPane.showInputDialog("Código de la IA a eliminar:");
 				consultas.eliminar(codigo);
 				JOptionPane.showMessageDialog(null, "¡IA eliminada con existo!");
@@ -138,14 +136,19 @@ public class opciones extends JFrame {
 			        tabla.addRow(new Object[]{codigo, nombre, tipo, aparicion, imagen});
 			     
 			        try {
+			        	// Crea un objeto file usando la url de la imagen
 			        	File url = new File(imagen);
+			        	// Lee y almacena la imagen en un bufferedImage
 		                BufferedImage bufi = ImageIO.read(url);
+		                // Crea un icono con el buffered
 		                ImageIcon icon = new ImageIcon(bufi);
-		                if(bufi == null) {
-		                	System.out.print("No se pudo leer la imagen: "+ imagen);
-		                }
+		                // Si el buffered es nulo muestra un mensaje de que no se pudo leer la imagen
+		                if(bufi == null) System.out.print("No se pudo leer la imagen: "+ imagen);
+		                // Ajusta la escala de la imagen  al JLabel que se mostrará
 		                Image foto = icon.getImage().getScaledInstance(imagenes.getWidth(), imagenes.getHeight(), Image.SCALE_SMOOTH);
+		                // Establece el icono
 		                imagenes.setIcon(new ImageIcon(foto));
+		                // Valida y "repinta" para mostrar la imagen (podriamos entenderlo como que recarga la imagen)
 		                imagenes.revalidate();
 		                imagenes.repaint();
 					} catch (Exception ex) {
